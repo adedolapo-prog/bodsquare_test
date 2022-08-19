@@ -11,7 +11,21 @@ const updateTaskService = async ({ body, param }) => {
   if (!task || !task?.lastErrorObject.updatedExisting) {
     throw Error("Task not found")
   }
-  return { success: true, response: "Task successfully updated" }
+  return { status: "Success", response: "Task successfully updated" }
+}
+
+const getTaskService = async ({ userId }) => {
+  const tasks = await Task.find({ userId: mongoose.Types.ObjectId(userId) })
+
+  if (tasks.length === 0) {
+    throw Error("Task not found")
+  }
+
+  return {
+    status: "Success",
+    response: "Your tasks have been successfully fetched",
+    data: tasks,
+  }
 }
 
 const deleteTaskService = async ({ param }) => {
@@ -20,10 +34,11 @@ const deleteTaskService = async ({ param }) => {
     throw Error("Task not found")
   }
 
-  return { success: true, response: "Task successfully deleted" }
+  return { status: "Success", response: "Task successfully deleted" }
 }
 
 module.exports = {
   updateTaskService,
+  getTaskService,
   deleteTaskService,
 }

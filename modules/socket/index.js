@@ -35,10 +35,10 @@ module.exports.socketConnection = async (io) => {
       if (change.operationType === "insert") {
         const receiver = await getUser(change.fullDocument.userId)
 
-        io.to(receiver.socketId).emit(
-          "in-app-notification",
-          change.fullDocument
-        )
+        io.to(receiver.socketId).emit("in-app-notification", {
+          status: "Success",
+          response: "Your task has been created",
+        })
       }
     } catch (error) {
       fs.writeFileSync("errorlog.txt", `Error: ${error.message} /n`)
