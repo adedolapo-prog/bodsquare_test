@@ -12,19 +12,6 @@ const tokenHandler = async (email, _id) => {
   }
 }
 
-const AlphaNumeric = (length, type = "alpha") => {
-  var result = ""
-  var characters =
-    type === "alpha"
-      ? "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-      : "0123456789"
-  var charactersLength = characters.length
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
-  }
-  return result
-}
-
 const hashPassword = async (password) => {
   return await argon2.hash(password)
 }
