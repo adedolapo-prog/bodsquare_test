@@ -33,7 +33,7 @@ module.exports.socketConnection = async (io) => {
   changeStream.on("change", async (change) => {
     try {
       if (change.operationType === "insert") {
-        const receiver = await getUser(change.fullDocument.recipientId)
+        const receiver = await getUser(change.fullDocument.userId)
 
         io.to(receiver.socketId).emit(
           "in-app-notification",
