@@ -30,7 +30,6 @@ const verifyToken = async (token) => {
 
 module.exports = {
   tokenHandler,
-  AlphaNumeric,
   hashPassword,
   verifyPassword,
   verifyToken,
