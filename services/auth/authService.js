@@ -14,7 +14,7 @@ const createUserService = async (payload) => {
   const newUser = new User({ email, password: passwordHash })
   await newUser.save()
 
-  return { success: true, response: "User succussfully created", data: {} }
+  return { status: "Success", response: "User succussfully created", data: {} }
 }
 
 const loginUserService = async (payload) => {
@@ -39,7 +39,7 @@ const loginUserService = async (payload) => {
   }
 
   return {
-    success: true,
+    status: "Success",
     response: "Login Successful",
     data: { ...user, token },
   }
